@@ -18,4 +18,70 @@ Via [Composer](https://getcomposer.org/):
 $ composer require andanteproject/recaptcha-bundle
 ```
 
-Built with love ❤️by [AndanteProject](https://github.com/andanteproject) team.
+## Features
+- Add [Google reCAPTCHA](https://www.google.com/recaptcha/) to your [Symfony Form](https://symfony.com/doc/current/forms.html) just like you do with every other `FormType`;
+- Works like magic ✨.
+
+## Install
+After [install](#install), make sure you have the bundle registered in your symfony bundles list (`config/bundles.php`):
+```php
+return [
+    /// bundles...
+    Andante\ReCaptchaBundle\AndanteReCaptchaBundle::class => ['all' => true],
+    /// bundles...
+];
+```
+This should have been done automagically if you are using [Symfony Flex](https://flex.symfony.com). Otherwise, just register it by yourself.
+
+## Configuration
+Create a new `andante_re_captcha.yaml` configuration file and sets [Google ReCAPTCHA v2 `secret` and `site_key`](http://www.google.com/recaptcha/admin).
+```yaml
+andante_re_captcha:
+  secret: 'put_here_your_google_recaptcha_v2_secret'
+  site_key: 'put_here_your_google_recaptcha_v2_site_key'
+```
+### Dev/test environment Configuration 
+**Please note:** If you don't want to be annoyed by recaptcha in your development/test environment, just use `secret key` and `site key` you can find in this [Google ReCAPTCHA documentation page](https://developers.google.com/recaptcha/docs/faq#id-like-to-run-automated-tests-with-recaptcha.-what-should-i-do).
+
+## Usage
+After this, you can add `Andante\ReCaptchaBundle\Form\ReCaptchaType` Form type in your forms like you always do with other types.
+```php
+<?php
+use App\Form\Type\ReCaptchaType;
+use Symfony\Component\Form\AbstractType;
+
+class RegistrationFormType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            // ...
+            // All your form fields
+            // ...
+            ->add('recaptcha', ReCaptchaType::class);
+    }
+}
+```
+**Done!** 🎉
+
+You also have 2 options to change ReCAPTCHA _theme_ or _size_.
+```php
+$builder->add('recaptcha', ReCaptchaType::class, [
+    'theme' => 'dark', // default is "light"
+    'size' =>  'compact' // default is "normal"
+]);
+```
+Using the option `'theme'` => `'dark'` is especially useful if your app has a dark mode.
+
+## How to change validation process
+Validation is handled by `Andante\ReCaptchaBundle\Validator\Constraint\ReCaptchaValidator`, which is a default constraint inside `ReCaptchaType` options.
+If you want to replace it with your own or disable it for whatever reason, just empty/replace form type `constraints` option.
+```php
+$builder->add('recaptcha', ReCaptchaType::class, [
+    'constraints' => [
+        // Default value is Constraints\NotBlank + Constraint\Recaptcha 
+    ]
+]);
+```
+
+Built with love ❤️ by [AndanteProject](https://github.com/andanteproject) team.
