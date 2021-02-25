@@ -1,6 +1,6 @@
 {
     "name": "andanteproject/recaptcha-bundle",
-    "description": "A Symfony Bundle to handle soft deletable with Doctrine Entities",
+    "description": "A Symfony Bundle to easily integrate Google reCAPTCHA into Symfony Form",
     "keywords": [
         "php",
         "symfony",
