@@ -1,5 +1,5 @@
 ![Andante Project Logo](https://github.com/andanteproject/recaptcha-bundle/blob/main/andanteproject-logo.png?raw=true)
-# Soft Deletable Bundle 
+# Google ReCAPTCHA Bundle 
 #### Symfony Bundle - [AndanteProject](https://github.com/andanteproject)
 [![Latest Version](https://img.shields.io/github/release/andanteproject/recaptcha-bundle.svg)](https://github.com/andanteproject/recaptcha-bundle/releases)
 ![Github actions](https://github.com/andanteproject/recaptcha-bundle/actions/workflows/workflow.yml/badge.svg?branch=main)
