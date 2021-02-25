@@ -47,7 +47,7 @@ andante_re_captcha:
 After this, you can add `Andante\ReCaptchaBundle\Form\ReCaptchaType` Form type in your forms like you always do with other types.
 ```php
 <?php
-use App\Form\Type\ReCaptchaType;
+use Andante\ReCaptchaBundle\Form\ReCaptchaType;
 use Symfony\Component\Form\AbstractType;
 
 class RegistrationFormType extends AbstractType
