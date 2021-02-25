@@ -1,0 +1,9 @@
+.idea
+/var/*
+.phpunit.result.cache
+composer.lock
+# Managed by Composer
+/app/bootstrap.php.cache
+/var/bootstrap.php.cache
+/vendor/
+/phpunit.xml

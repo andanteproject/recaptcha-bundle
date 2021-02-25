@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="it" trgLang="it">
+  <file id="validators.it">
+    <unit id="q_xQSPs" name="recaptcha_type.invalid_message">
+      <segment>
+        <source>andante.recaptcha_type.invalid_message</source>
+        <target>ReCaptcha non valido. Clicca nuovamente sul campo "Non sono un robot"</target>
+      </segment>
+    </unit>
+    <unit id="yG6qaxM" name="andante.recaptcha_type.not_blank.message">
+      <segment>
+        <source>andante.recaptcha_type.not_blank.message</source>
+        <target>È necessario cliccare su "Non sono un robot"</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

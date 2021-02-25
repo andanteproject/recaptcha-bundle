@@ -1,0 +1,24 @@
+{%- block andante_re_captcha_widget -%}
+    {%- apply spaceless -%}
+        <div class="g-recaptcha-container">
+            <script src="//www.google.com/recaptcha/api.js" async defer></script>
+            <div class="g-recaptcha"
+                 data-theme="{{ form.vars.theme }}"
+                 data-size="{{ form.vars.size }}"
+                 data-sitekey="{{ form.vars.g_recaptcha_site_key }}"
+                 data-callback="recaptchajs{{ form.vars.id }}"></div>
+            {{ form_widget(form) }}
+            <script type="text/javascript">
+                function recaptchajs{{ form.vars.id }}(response) {
+                    document.getElementById('{{ form.vars.id }}').value = response;
+                }
+            </script>
+        </div>
+    {%- endapply -%}
+{%- endblock andante_re_captcha_widget -%}
+
+{%- block andante_re_captcha_row -%}
+    <div class="field is-recaptcha-field">
+        {{ form_widget(form) }}
+    </div>
+{%- endblock andante_re_captcha_row -%}
