@@ -25,6 +25,7 @@ class AndanteReCaptchaExtension extends Extension implements PrependExtensionInt
                 new Definition(ReCaptchaType::class)
             )
             ->addArgument($config['site_key'])
+            ->addArgument($config['enable_validation'])
             ->addTag('form.type');
 
         $container
@@ -33,7 +34,6 @@ class AndanteReCaptchaExtension extends Extension implements PrependExtensionInt
                 new Definition(ReCaptchaValidator::class)
             )
             ->addArgument(new Reference('andante_re_captcha.service.recaptcha'))
-            ->addArgument($config['enable_validation'])
             ->addTag('validator.constraint_validator', ['alias' => 'recaptcha']);
 
         $container
