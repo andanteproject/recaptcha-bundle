@@ -15,10 +15,12 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class ReCaptchaType extends AbstractType
 {
     private string $siteKey;
+    private bool $validationEnabled;
 
-    public function __construct(string $siteKey)
+    public function __construct(string $siteKey, bool $validationEnabled = true)
     {
         $this->siteKey = $siteKey;
+        $this->validationEnabled = $validationEnabled;
     }
 
     public function getParent(): string
@@ -26,7 +28,7 @@ class ReCaptchaType extends AbstractType
         return HiddenType::class;
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options) : void
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['size'] = $options['size'];
         $view->vars['theme'] = $options['theme'];
@@ -45,11 +47,16 @@ class ReCaptchaType extends AbstractType
             'error_bubbling' => false,
             'theme' => 'light',
             'size' => 'normal',
-            'constraints' => [
-                new NotBlank(['message' => 'andante.recaptcha_type.not_blank.message']),
-                new ReCaptcha()
-            ],
         ]);
+        if ($this->validationEnabled) {
+            $resolver->setDefaults([
+                'constraints' => [
+                    new NotBlank(['message' => 'andante.recaptcha_type.not_blank.message']),
+                    new ReCaptcha(),
+                ],
+            ]);
+        }
+
         $resolver->setAllowedValues('theme', ['dark', 'light']);
         $resolver->setAllowedValues('size', ['normal', 'compact']);
     }
