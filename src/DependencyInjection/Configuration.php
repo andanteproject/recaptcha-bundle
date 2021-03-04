@@ -18,6 +18,9 @@ class Configuration implements ConfigurationInterface
         /** @var ArrayNodeDefinition $node */
         $node = $treeBuilder->getRootNode();
         $node->children()
+                ->booleanNode('enable_validation')
+                    ->defaultTrue()
+                ->end()
                 ->scalarNode('secret')
                     ->isRequired()
                     ->cannotBeEmpty()

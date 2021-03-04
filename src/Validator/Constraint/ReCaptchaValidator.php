@@ -13,10 +13,12 @@ use Symfony\Component\Validator\Exception\UnexpectedValueException;
 class ReCaptchaValidator extends ConstraintValidator
 {
     private ReCaptchaService $recaptchaService;
+    private bool $enabled;
 
-    public function __construct(ReCaptchaService $recaptchaService)
+    public function __construct(ReCaptchaService $recaptchaService, bool $enabled = true)
     {
         $this->recaptchaService = $recaptchaService;
+        $this->enabled = $enabled;
     }
 
     public function validate($value, Constraint $constraint): void
@@ -29,13 +31,15 @@ class ReCaptchaValidator extends ConstraintValidator
             return;
         }
 
-        if (! is_string($value)) {
-            throw new UnexpectedValueException($value, 'string');
-        }
-        $response = $this->recaptchaService->verify($value);
-        if (! $response->isSuccess()) {
-            $this->context->buildViolation($constraint->message)
-                ->addViolation();
+        if ($this->enabled) {
+            if (! is_string($value)) {
+                throw new UnexpectedValueException($value, 'string');
+            }
+            $response = $this->recaptchaService->verify($value);
+            if (! $response->isSuccess()) {
+                $this->context->buildViolation($constraint->message)
+                    ->addViolation();
+            }
         }
     }
 }
