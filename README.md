@@ -42,6 +42,11 @@ andante_re_captcha:
 ```
 ### Dev/test environment Configuration 
 **Please note:** If you don't want to be annoyed by recaptcha in your development/test environment, just use `secret key` and `site key` you can find in this [Google ReCAPTCHA documentation page](https://developers.google.com/recaptcha/docs/faq#id-like-to-run-automated-tests-with-recaptcha.-what-should-i-do).
+Furthermore, you can create a `test` configuration to disable `Andante\ReCaptchaBundle\Validator\Constraint\ReCaptchaValidator` in `test` environment:
+```yaml
+andante_re_captcha:
+  enable_validation: false #default: true
+```
 
 ## Usage
 After this, you can add `Andante\ReCaptchaBundle\Form\ReCaptchaType` Form type in your forms like you always do with other types.
