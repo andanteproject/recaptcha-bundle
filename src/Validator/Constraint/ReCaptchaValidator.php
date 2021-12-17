@@ -19,6 +19,9 @@ class ReCaptchaValidator extends ConstraintValidator
         $this->recaptchaService = $recaptchaService;
     }
 
+    /**
+     * @var mixed $value
+     */
     public function validate($value, Constraint $constraint): void
     {
         if (! $constraint instanceof ReCaptcha) {
